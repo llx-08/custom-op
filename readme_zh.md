@@ -1,0 +1,13 @@
+添加操作实现
+现在你已经准备好实现你的操作了。按照添加新操作的说明，在<your_op>/cc/ops/下添加操作接口的定义，并在<your_op>/cc/kernels/下添加内核实现。
+
+构建和测试CPU操作
+巴泽尔
+要用Bazel构建自定义的op共享库，请遵循tensorflow_zero_out/BUILD中的cc_binary例子。你需要依赖TensorFlow pip包中的头文件和libtensorflow_framework.so来构建你的op。前面我们提到，模板已经将TensorFlow管道包设置为tf目录下的外部依赖，并且管道包在WORKSPACE文件中被列为local_config_tf。你的操作可以直接依赖TensorFlow头文件和 "libtensorflow_framework.so"，具体方法如下。
+
+你将需要为你的操作保留上述两个依赖项。要用Bazel构建共享库，在你的Docker容器中运行以下命令
+
+在Python中扩展和测试操作
+一旦你建立了你的自定义op共享库，你可以按照tensorflow_zero_out/python/ops中的例子，以及这里的说明，在Python中为你的op创建一个模块。这两个指南都使用了TensorFlow API tf.load_op_library，它加载了共享库，并在TensorFlow框架中注册了OPS。
+
+通过www.DeepL.com/Translator（免费版）翻译
